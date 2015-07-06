@@ -64,15 +64,17 @@ class OBD_Recorder():
             log_string = current_time
             results = {}
             for index in self.sensorlist:
-                if index=="dtc_status":
+                if index==1:
 		    (name, value, unit) = self.port.sensor(index)
 		    log_string = log_string + ","+value[0]
+		    log_string = log_string + ","+value[1]
+		    log_string = log_string + ","+value[2]
 		    results[obd_sensors.SENSORS[index].shortname] = value;
 		else:
 		    (name, value, unit) = self.port.sensor(index)
 		    log_string = log_string + ","+str(value)
 		    results[obd_sensors.SENSORS[index].shortname] = value;
-
+	    print log_string+"\n"
             gear = self.calculate_gear(results["rpm"], results["speed"])
             log_string = log_string #+ "," + str(gear)
             self.log_file.write(log_string+"\n")
