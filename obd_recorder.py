@@ -66,9 +66,7 @@ class OBD_Recorder():
             for index in self.sensorlist:
                 if index=="dtc_status":
 		    (name, value, unit) = self.port.sensor(index)
-		    log_string = log_string + ","+str(value[0])
-		    log_string = log_string + ","+str(value[1])
-		    log_string = log_string + ","+str(value[2])
+		    log_string = log_string + ","+value[0]
 		    results[obd_sensors.SENSORS[index].shortname] = value;
 		else:
 		    (name, value, unit) = self.port.sensor(index)
